@@ -20,8 +20,6 @@ body{
     background: #584040;
     display: flex;
     align-items: top;
-    overflow-y: hidden;
-	overflow-x: scroll;
 }
 
 .contenedorSkins{
@@ -981,8 +979,8 @@ a{
 
 <script>
 
-var element = document.querySelector("html");
-element.requestFullscreen()
+var element = document.documentElement;
+element.requestFullscreen();
     
 //****** GAME LOOP ********//
 
