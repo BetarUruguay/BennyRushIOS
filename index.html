@@ -16,7 +16,7 @@
 
 /*EL DINO CORRIENDO ES EL PROBLEMA DEL PRINCIPIO*/
 body{
-    height: 100vh;
+    height: 100%;
     background: #584040;
     display: flex;
     align-items: top;
@@ -1006,7 +1006,7 @@ if(document.readyState === "complete" || document.readyState === "interactive"){
 }
 
 function Init() {
-    document.querySelector("body").style.height = window.innerHeight;
+   // document.querySelector("body").style.height = window.innerHeight;
     time = new Date();
     if(sessionStorage.getItem("primera") != null){
         click = true;
