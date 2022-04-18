@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self' 'unsafe-inline'" />
+    <title>Dinosaurio Chrome V2</title>
+    <style>
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/*EL DINO CORRIENDO ES EL PROBLEMA DEL PRINCIPIO*/
+body{
+    height: 100vh;
+    background: #584040;
+    display: flex;
+    align-items: top;
+}
+
+.contenedorSkins{
+    height: 100vh;
+    width: 100vw;
+    margin: 0 auto;
+
+    position: fixed;
+    visibility: hidden;
+    z-index: 4;
+
+    background: linear-gradient(#b7c3d6, transparent) #ffe2d1;
+    transition: background-color 1s linear;
+    overflow: hidden;
+}
+
+.volverSkins{
+    width: 5vh;
+    height: 10vw;
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+    transform: rotate(180deg);
+    z-index: 12;
+}
+
+.tituloSkins{
+    font-family: 'Retro Computer';
+    position: relative;
+    top: 3vh;
+    font-size: 4.88vh;
+    color: #ffd900;
+    text-align: center;
+    z-index: 10;
+}
+
+.negraSkins{
+    height: 100vh;
+    width: 100vw;
+
+    background-color: black;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0.7;
+    z-index: 9;
+}
+
+.contenedorSk{
+    visibility: hidden;
+    width: 90vw;
+    height: 25vh;
+
+    position: fixed;
+    bottom: 30%;
+    right: 5vw;
+    z-index: 11;
+}
+
+.flechaI{
+    height: 7.5vh;
+    width: 15vw;
+
+    position: absolute;
+    float: left;
+    left: 3vw;
+    top: 20.5vw;
+
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+    transform: rotate(180deg);
+}
+
+.flechaD{
+    height: 7.5vh;
+    width: 15vw;
+
+    position: absolute;
+    float: right;
+    right: 3vw;
+    top: 20vw;
+
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+}
+
+.sk{
+    height: 25vh;
+    width: 40vw;
+
+    position: relative;
+    left: 25vw;
+    top: 5vw;
+}
+
+.skinName{
+    visibility: hidden;
+    width: 100vw;
+    position: absolute;
+    right: 0;
+    bottom: 50%;
+
+    font-family: 'Retro Computer';
+    font-size: 3.9vh;
+    color: #ffd900;
+    text-align: center;
+    z-index: 12;
+}
+
+.skinPrice{
+    width: 100vw;
+    position: absolute;
+    bottom: 29%;
+    right: 0;
+
+    font-family: 'Retro Computer';
+    font-size: 1.46vh;
+    color: #ffd900;
+    text-align: center;
+    z-index: 12;
+
+}
+
+.skinImg{
+    position: absolute;
+    top: 20vw;
+    left: 35vw;
+
+    height: 15vh;
+    width: 30vw;
+
+    background: url(img/skins/benny.png);
+    background-size: contain;
+    background-position: center;
+    filter: brightness(1);
+    z-index: 20;
+}
+
+.comprarS{
+    visibility: hidden;
+    height: 5vh;
+    width: 40vw;
+
+    position: absolute;
+    bottom: 20%;
+    right: 30vw;
+    z-index: 12;
+    padding-top: 4vw;
+
+    border: 2px solid #ffd900 ;
+    text-align: center;
+    font-family: 'Retro Computer';
+    font-size: 1.71vh;
+    color: #ffd900;
+}
+
+.contenedor {
+    width: 100vw;
+    height:100vh;
+    margin: 0 auto;
+    position: fixed;
+
+    visibility: visible;
+    background: linear-gradient(#b7c3d6, transparent) #ffe2d1;/*linear-gradient(#90ebff, white);*/
+    transition: background-color 1s linear;
+    overflow: hidden;
+}
+
+.mediodia {
+    background-color: #e9f6f8;
+}
+
+.tarde {
+    background-color: #ffadad;
+}
+
+.noche {
+    background-color: #424050;
+}
+
+.dino {
+    width: 84px;
+    height: 84px;
+
+    position: absolute;
+    bottom: 22px;
+    left: 1px;
+    z-index: 2;
+
+    background: url(img/benny.png) repeat-x 0px 0px;
+    background-size: 336px 155px;
+    background-position-x: 0px;
+
+}
+
+.dino-agachado {
+    visibility: hidden;
+    width: 84px;
+    height:70px;
+
+    position: absolute;
+    bottom: 22px;
+    left: 1px;
+    z-index: 2;
+
+    background: url(img/benny.png) repeat-x 0px 0px;
+    background-size: 336px 155px;
+    background-position-x: 0px;
+
+}
+
+.dino-corriendo {
+    animation: animarDino 0.25s steps(2) infinite;
+    animation-play-state: running;
+}
+
+.dino-corriendo-agachado {
+    animation: animarDinoAgachado 0.25s steps(2) infinite;
+    animation-play-state: running;
+}
+
+.dino-estrellado {
+    background-position-x: -252px;
+}
+
+.dino-agachado-estrellado {
+    background-position-x: -252px;
+    background-position-y: -84px; 
+}
+
+.suelo {
+    width: 200%;
+    height: 42px;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    background: url(img/suelo.png) repeat-x 0px 0px;
+    background-size: 50% 42px;
+
+}
+
+.coca{
+    width: 31px;
+    height: 96px;
+
+    position: absolute;
+    bottom: 16px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(img/coca1.png) no-repeat;
+}
+.coca2{
+    width: 98px;
+    height: 66px;
+
+    background: url(img/coca2.png) no-repeat;
+}
+
+.volador{
+    width: 96px;
+    height: 140px;
+
+    position: absolute;
+    bottom: 90px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(img/coca3.png) no-repeat;
+}
+
+.nube{
+    width: 92px;
+    height: 26px;
+
+    position: absolute;
+    z-index: 0;
+
+    background: url(img/nube.png) no-repeat;
+    background-size: 92px 26px;
+}
+
+.moneda{
+    visibility: visible;
+    width: 35px;
+    height: 35px;
+
+    position: absolute;
+    bottom: 16px;
+    left: 600px;
+    z-index: 1;
+
+    background: url(img/icons/coin.png) no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.score{
+    visibility: hidden;
+    width: 100vw;
+    height: 30px;
+
+    position: absolute;
+    top: 25%;
+    right: 0;
+    z-index: 10;
+
+    font-family: 'Retro Computer';
+    color: #ffd900;
+    font-size: 6.965vh;
+    font-weight: bold;
+    text-align: center;
+}
+
+.record{
+    width: 200px;
+    height: 30px;
+
+    position: absolute;
+    top: 30px;
+    right: 6px;
+    z-index: 16;
+
+    font-family: 'Verdana';
+    -webkit-text-stroke: 0.5px black;
+    color: #ffd900;
+    font-size: 2.5vh;
+    font-weight: bold;
+    text-align: right;
+}
+
+.cCoins{
+    width: auto;
+    height: 30px;
+
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    z-index: 16;
+
+    -webkit-text-stroke: 0.5px black;
+    color: #ffd900;
+    font-family: 'Verdana';
+    font-size: 2.5vh;
+    font-weight: bold;
+    text-align: right;
+}
+
+.gems{
+    width: 25px;
+    height: 25px;
+
+    position: absolute;
+    top: 3px;
+    right: 6px;
+    z-index: 16;
+
+    background: url(img/icons/coin.png);
+    background-size: contain;
+    background-position: center;
+}
+
+.settings{
+    visibility: visible;
+    width: 10vw;
+    height: 5vh;
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 16;
+
+}
+
+.ventana{
+    height: 60vh;
+    width: 60vw;
+    padding: 10px 20px;
+    margin: 20% auto;
+    z-index: 19;
+
+    background-color: rgb(9, 40, 124);
+    position: relative;
+    border-radius: 6%;
+}
+
+.cruz{
+    position: relative;
+    left: 0; 
+    text-align: left;
+
+    color: #ffd900;
+    font-size: 4vh;
+}
+
+a{
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+
+.imgSettings{
+    width: 10vw;
+    height: 5vh;
+
+    background: url(img/icons/settings.png);
+    background-size: contain;
+    background-position: center;
+    border: 2px solid #ffd900 ;
+    border-radius: 30%;
+}
+
+.modal{
+    background-color: rgba(0,0,0,0);
+    position:fixed;
+    top:-250px;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0;
+    pointer-events:none;
+    z-index: 17;
+}
+
+.negra{
+    height: 100vh;
+    width: 100vw;
+    visibility: visible;
+
+    background-color: black;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    opacity:0.7;
+    z-index: 14;
+}
+
+#MenuSettings:target{
+    position: absolute;
+    top: 0;
+    opacity:1;
+    pointer-events:auto;
+}
+
+.botonesAjustes{
+    font-family: 'Retro Computer';
+    font-size: 1.9vh;
+    color: #ffd900;
+
+    padding: 10% auto;
+    text-align: center;
+}
+
+.txtRateUs{
+    width: 50vw;
+    position: absolute;
+    top: 19vh;
+    left: 10vw;
+
+    text-align: center;
+    font-family: 'Retro Computer';
+    font-size: 2vh;
+    color: #ffd900;
+}
+
+.rateUs{
+    width: 15vw;
+    height: 7.5vh;
+
+    position: absolute;
+    top: 23vh;
+    right: 25.5vw;
+
+    border: 2px solid #ffd900;
+    border-radius: 30%;
+    color: #ffd900;
+    font-family: Helvetica;
+    font-size: 6.5vh;
+}
+
+.pausa{
+    visibility: hidden;
+    width: 10vw;
+    height: 5vh;
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    
+    background: url(img/icons/pause.png);
+    background-size: contain;
+    background-position: center;
+    border: 2px solid #ffd900 ;
+    border-radius: 30%;
+}
+
+.menuPausa{
+    visibility: hidden;
+    height: 18vh;
+    width: 60vw;
+
+    position: absolute;
+    top: 36.5%;
+    right:20vw;
+    padding: 10% auto;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 10%;
+    z-index: 16;
+
+    font-family: 'Retro Computer';
+    font-size: 3.8vh;
+    color: #ffd900;
+    text-align: center;
+}
+
+.continuar{
+    height: 4vh;
+    width: 50vw;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 6%;
+    position: relative;
+    left: 5vw;
+    right: 5vw;
+    top: 2vw;
+
+    font-family: 'Retro Computer';
+    text-align: center;
+    font-size: 2.61vh;
+    color: #ffd900;
+}
+
+.volver{
+    height: 4vh;
+    width: 50vw;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 6%;
+    position: relative;
+    left: 5vw;
+    right: 5vw;
+    top: 5vw;
+
+    font-family: 'Retro Computer';
+    text-align: center;
+    font-size: 1.9vh;
+    color: #ffd900;
+}
+
+.sonido{
+    width: 15vw;
+    height: 7.5vh;
+
+    position: absolute;
+    bottom: 7vh;
+    right: 25.5vw;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 30%;
+
+    background: url(img/icons/sound.png);
+    background-size: contain;
+    background-position: center;
+}
+
+.menuGameO{
+    visibility: hidden;
+    height: 25vh;
+    width: 70vw;
+
+    position: absolute;
+    top: 36.5%;
+    right:15vw;
+    padding: 5% auto;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 10%;
+    z-index: 16;
+
+    text-align: center;
+    color: #ffd900;
+    font-size: 1.66vh;
+    font-family: 'Retro Computer';
+    font-weight: 700;
+}
+
+.revivir{
+    opacity: 1;
+    position: relative;
+    top: 4%;
+
+    font-family: 'Retro Computer';
+    text-align: center;
+    font-size: 1.425vh;
+    color: #ffd900
+}
+
+
+.pagar{
+    height: 7.5vh;
+    width: 15vw;
+
+    position: absolute;
+    top: 39%;
+    left: 39%;
+    padding: 15% auto;
+
+
+    border: 2px solid #ffd900;
+    border-radius: 30%;
+
+    background: url(img/icons/pagar.png);
+    background-size: contain;
+    background-position: center;
+
+}
+
+.volverAJugar{
+    height: 2.5vh;
+    width: 40vw;
+
+    position: absolute;
+    bottom: 9%;
+    right: 15vw;
+    padding-top: 1vw;
+
+    font-family: 'Retro Computer';
+    text-align: center;
+    font-size: 1.425vh;
+    color: #ffd900;
+
+    border-radius: 7%;
+    border: 2px solid #ffd900 ;
+
+}
+
+.volverGameO{
+    visibility: hidden;
+    width: 10vw;
+    height: 5vh;
+
+    position: absolute;
+    top: 30.5%;
+    left: 13vw;
+    
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+    transform: rotate(180deg);
+    z-index: 16;
+}
+
+.lobby{
+    position: relative;
+    top: 40vh;
+    width: 100%;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    z-index: 14;
+}
+
+.play{
+    visibility: hidden;
+    height: 17vh;
+    width: 34vw;
+
+    position: absolute;
+    left: 33%;
+
+    border: 2px solid #ffd900;
+    border-radius: 25%;
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+}
+
+.titulo{
+    visibility: visible;
+    position: absolute;
+    top: -26vh;
+
+    font-family: 'Retro Computer';
+    font-size: 4.75vh;
+    color: #ffd900;
+    text-align: center;
+}
+
+.skins{
+    height: 6vh;
+    width: 12vw;
+    
+    position: absolute;
+    top: 20vh;
+    left: 44vw;
+
+    border-radius: 30%;
+    border: 2px solid #ffd900;
+
+    background: url(img/icons/skins.png);
+    background-size: contain;
+    background-position: center;
+}
+
+
+.fondosIns{
+    visibility: hidden;
+    height: 20vh;
+    width: 80vw;
+
+    position: absolute;
+    top: 40vh;
+    left: 10vw;
+    padding-top: 2vh;
+
+    border: 2px solid #ffd900 ;
+    border-radius: 10%;
+    z-index: 17;
+
+    font-family: 'Retro Computer';
+    font-size: 1.4vh;
+    color: #ffd900;
+    text-align: center;
+}
+
+.irTienda{
+    height: 5vh;
+    width: 40vw;
+
+    position: absolute;
+    bottom: 5vw;
+    left: 20vw;
+
+    border: 2px solid #ffd900;
+    padding-top: 4vw;
+
+    font-family: 'Retro Computer';
+    font-size: 1.425vh;
+    color: #ffd900;
+    text-align: center;
+
+}
+
+.volverT{
+    visibility: hidden;
+    width: 10vw;
+    height: 5vh;
+
+    position: absolute;
+    top: 30.5%;
+    left: 13vw;
+    
+    background: url(img/icons/play.png);
+    background-size: contain;
+    background-position: center;
+    transform: rotate(180deg);
+    z-index: 16;
+}
+
+.parpadea {
+    visibility: hidden;
+    width: 100vw;
+    height: 30px;
+
+    position: absolute;
+    top: 25%;
+    right: 0;
+    z-index: 16;
+
+    color: #fddd25;
+    font-family: 'Retro Computer';
+    font-size: 4.04vh;
+    font-weight: bold;
+    text-align: center;
+
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.avisos{
+    width: 100vw;
+    visibility: hidden;
+    position: absolute;
+    bottom: 32%; 
+    overflow: hidden;
+
+    font-family: 'Retro Computer';
+    font-size: 2.14vh;
+    color: #ffd900;
+    text-align: center;
+    z-index: 17;
+
+    animation: 1.5s MostrarAviso;
+    animation-play-state: paused;
+}
+
+@keyframes MostrarAviso{
+    from {
+    left: -100vw;
+    }
+
+    to {
+    left: 0;
+    }
+}
+
+@-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes animarDino{
+    from{
+        background-position-x: -84px;
+    }
+    to{
+        background-position-x: -252px;
+    }
+}
+
+@keyframes animarDinoAgachado{
+    from{
+        background-position-x: -84px;
+        background-position-y: -84px;
+    }
+    to{
+        background-position-x: -252px;
+        background-position-y: -84px;
+    }
+}
+
+@font-face {
+    font-family: 'Retro Computer';
+    src: url("retro_computer_personal_use.ttf") format('truetype');
+}
+    </style>
+</head>
+
+<body>
+    <div class="contenedorSkins">
+        <div class="negraSkins"></div>
+        <div class="volverSkins" onclick="VolverAlMenu()"></div>
+        <div class="tituloSkins"><strong>Atuendos</strong></div>
+        <div class="skinName"><strong>Benny</strong></div>
+        <div class="contenedorSk">
+            <div class="flechaD" onclick="SelectSkin('d')"></div>
+            <div class="skinImg"></div>
+            <div class="flechaI" onclick="SelectSkin('i')"></div>
+        </div>
+        <div class="skinPrice">Desbloqueado</div>
+        <div class="comprarS" onclick="Pagar(skins[index].price,'sk')">Comprar</div>
+
+        <div class="fondosIns">
+            <div class="textoFIns">
+                <h2>Fondos insuficientes</h2>
+            <h5><br>No tienes suficientes monedas,<br>intenta otra vez cuando tengas las suficientes</h5>
+            </div>
+            
+            <div class="irTienda" onclick="SalirFIns()">Quitar</div>
+        </div>
+        <div class="volverT" onclick="SalirFIns()"></div>
+    </div>
+
+    <div class="loading"></div>
+    <div class="contenedor">
+        <div class="negra"></div>
+        <div id="MenuSettings" class="modal">
+            <div class="ventana">
+                <a href="#" class="cruz" style='text-decoration:none;' onclick="Ajustes(1)">
+                X
+                </a>
+                <div class="botonesAjustes">
+                    <div class="textoBotonesAjustes">
+                        <h1>Ajustes</h1>
+                    </div>
+                    <div class="txtRateUs">Sobre nosotros</div>
+                    <div class="rateUs" onclick="Rate()"><b>i</b></div>
+                    <div class="sonido" onclick="Sonido()"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="suelo"></div>
+        
+        <div class="dino"></div>
+        <div class="dino-agachado dino-corriendo-agachado"></div>
+
+        <div class="score">0</div>
+        <div class="record">Record: </div>
+        <div class="parpadea"></div>
+        <div class="cCoins">100</div>
+        <div class="gems"></div>
+        <div class="avisos"></div>
+
+        <div class="menuGameO">
+            <h1 >GAME OVER</h1>
+            <div class="revivir">¿Revivir?</div>
+            <div class="pagar" onclick="Pagar(50,'rev')"></div>
+            <div class="volverAJugar" onclick="ClickStart()">Reiniciar</div>
+        </div>
+        <div class="volverGameO" onclick="VolverAlMenu()"></div>
+
+        <div class="lobby">
+            <div class="titulo"><strong>Benny Rush</strong></div>
+            <div class="play" onclick="ClickStart()"></div>
+            <div class="skins" onclick="Ir('skins')"></div>
+        </div>
+        
+        <div class="pausa" onclick="Pausa()"></div>
+        <div class="menuPausa">
+            <div class="textoEnPausa">
+                <strong>En pausa</strong>
+            </div>
+            <div class="continuar" onclick="ClickStart()">Continuar</div>
+            <div class="volver" onclick="VolverAlMenu()">Volver al menu</div>
+        </div>
+        <div class="settings" onclick="Ajustes(0)">
+            <a href="#MenuSettings">
+            <div class="imgSettings"></div>
+            </a>
+        </div>
+    </div>
+    <script>
+        function onDeviceReady(){
+            screen.orientation.lock('portrait');
+        }
+        document.addEventListener('deviceready',function(){
+            onDeviceReady()
+        })
+    </script>
+
+<script>
+
+//****** GAME LOOP ********//
+
+
+var time = new Date();
+var deltaTime = 0;
+
+if(document.readyState === "complete" || document.readyState === "interactive"){
+    setTimeout(Init, 1);
+}else{
+    document.addEventListener("DOMContentLoaded", Init); 
+}
+
+function Init() {
+    time = new Date();
+    if(sessionStorage.getItem("primera") != null){
+        click = true;
+        primera = 2;
+    }
+    Start();
+    Loop();
+}
+
+function Loop() {
+    deltaTime = (new Date() - time) / 1000;
+    time = new Date();
+    Update();
+    requestAnimationFrame(Loop);
+}
+
+//****** GAME LOGIC ********//
+
+var sueloY = 22;
+var velY = 0;
+var impulso = 900;
+var gravedad = 2500;
+
+var dinoPosX = 42;
+var dinoPosY = sueloY; 
+
+var sueloX = 0;
+var velEscenario = 1400/3;
+var gameVel = 0.65;
+var score = 0;
+var record = 0;
+
+var parado = false;
+var saltando = false;
+var agachado = false;
+var click = false;
+var primera = 0;
+var gameO = false;
+var pausa = false;
+var sound = true;
+var primeraVez = true;
+var inmortal = false;
+var revividio = false;
+
+var tiempoHastaObstaculo = 2;
+var tiempoObstaculoMin = 1;
+var tiempoObstaculoMax = 1.9;
+var obstaculoPosY = 16;
+var obstaculos = [];
+
+var tiempoHastaNube = 0.5;
+var tiempoNubeMin = 0.7;
+var tiempoNubeMax = 2.7;
+var maxNubeY = 500;
+var minNubeY = 100;
+var nubes = [];
+var velNube = 0.5;
+var cantidadSkins = 7;
+var index = -1;
+var tiempoHastaMoneda = 23;
+var tiempoMonedaMin = 19; 
+var tiempoMonedaMax = 33; 
+var monedas = [];
+var coins = 100;
+var donde = "l";
+var idioma;
+var desb = "Desbloqueado";
+
+const recordMusic = new Audio("audio/record.mp3");
+const startMusic = new Audio("audio/start.mp3");
+const jumpMusic = new Audio("audio/jump.mp3");
+const deadMusic = new Audio("audio/dead.mp3");
+
+var contenedor;
+var dino;
+var dinoAgachado;
+var textoScore;
+var suelo;
+var gameOver;
+var lobby;
+var play;
+var pause;
+var settings;
+var negra;
+var menuPausa;
+var menuGameO;
+
+var skins = [
+    {
+        "name": "Benny",
+        "gems": "no",
+        "price": 0,
+        "file": "url(img/benny.png)",
+        "pic": "url(img/skins/benny.png)"
+    },
+    {
+        "name": "Sport",
+        "gems": "no",
+        "price": 50,
+        "file": "url(img/sport.png)",
+        "pic": "url(img/skins/sport.png)"
+    },
+    {
+        "name": "Playa",
+        "gems": "no",
+        "price": 75,
+        "file": "url(img/beach.png)",
+        "pic": "url(img/skins/beach.png)"
+    },
+    {
+        "name": "Gala",
+        "gems": "no",
+        "price": 100,
+        "file": "url(img/admin.png)",
+        "pic": "url(img/skins/admin.png)"
+    },
+    {
+        "name": "Cuarentena",
+        "gems": "yes",
+        "price": 290,
+        "file": "url(img/cuare.png)",
+        "pic": "url(img/skins/cuare.png)"
+    },
+    {
+        "name": "International \nChef",
+        "gems": "yes",
+        "price": 120,
+        "file": "url(img/cheff.png)",
+        "pic": "url(img/skins/cheff.png)"
+    },
+    {
+        "name": "Constructor",
+        "gems": "yes",
+        "price": 150,
+        "file": "url(img/meshe.png)",
+        "pic": "url(img/skins/meshe.png)"
+    },
+    {
+        "name": "Enfermero",
+        "gems": "yes",
+        "price": 90,
+        "file": "url(img/nurse.png)",
+        "pic": "url(img/skins/nurse.png)"
+    }
+]
+
+function Start() {
+    negra = document.querySelector(".negra")
+    gameOver = document.querySelector(".game-over");
+    lobby = document.querySelector(".lobby");
+    play = document.querySelector(".play");
+    pause = document.querySelector(".pausa");
+    suelo = document.querySelector(".suelo");
+    settings = document.querySelector(".settings");
+    contenedor = document.querySelector(".contenedor");
+    textoScore = document.querySelector(".score");
+    textoRecord = document.querySelector(".record");
+    textoP = document.querySelector(".parpadea");
+    menuPausa = document.querySelector(".menuPausa");
+    menuGameO = document.querySelector(".menuGameO");
+
+    if (localStorage.getItem("record") != null){
+        record = localStorage.getItem("record");
+    }
+    textoRecord.innerText += " " + record;
+
+    if(localStorage.getItem("sound") == "no"){
+        sound = false;
+        document.querySelector(".sonido").style.background = "url(img/icons/mute.png)";
+        document.querySelector(".sonido").style.backgroundSize = "contain";
+    }  
+
+    if(localStorage.getItem("index") != null){
+        try {
+            if (localStorage.getItem("index") != "-1"){
+                index = parseInt(localStorage.getItem("index"));
+            }
+        } finally {
+            var bar = document.querySelector(".dino")
+            var foo = getComputedStyle(bar);
+            foo = String(foo.background);
+            foo = foo.slice(40,53);
+            foo = "url(" + foo +")";
+            if (foo != skins[index].file) ChangeSkin(index);
+
+            document.querySelector(".skinImg").style.background = skins[index].pic;
+            document.querySelector(".skinImg").style.backgroundRepeat = "no-repeat";
+            document.querySelector(".skinImg").backgroundSize=  "contain";
+            document.querySelector(".skinImg").backgroundPosition = "center";
+            document.querySelector(".skinName").innerText = skins[index].name;
+        }
+
+    }else{
+        index = 0;
+        document.querySelector(".skinImg").style.background = skins[index].pic;
+        document.querySelector(".skinImg").style.backgroundRepeat = "no-repeat";
+        document.querySelector(".skinImg").backgroundSize=  "contain";
+        document.querySelector(".skinImg").backgroundPosition = "center";
+        document.querySelector(".skinName").innerText = skins[index].name;
+    }
+
+    dino = document.querySelector(".dino");
+    dinoAgachado = document.querySelector(".dino-agachado");
+    dinoAgachado.classList.remove("dino-agachado");
+    document.addEventListener("swiped-up", saltarT);
+    document.addEventListener("swiped-down", agacharceT);
+
+    sessionStorage.setItem("primera", "true");
+    if (primera == 0){
+        settings.style.visibility = "visible";
+        pause.style.visibility = "hidden";
+        play.style.visibility = "visible";
+    }
+    if (primera > 0){
+        negra.style.visibility = "hidden";
+        textoScore.style.visibility = "visible";
+        document.querySelector(".titulo").style.visibility = "hidden";
+        dinoAgachado.style.visibility = "visible";
+        dino.classList.add("dino-corriendo");
+    } 
+
+    if (primera > 1){
+        settings.style.visibility = "hidden";
+        pause.style.visibility = "visible";
+    }
+
+    if (localStorage.getItem("primeraVez") != null){
+        primeraVez = false;
+    }else{
+        localStorage.setItem("coins", coins);
+        idioma = window.navigator.language.slice(0,2);
+        localStorage.setItem("lan",idioma);
+    } 
+
+    coins = localStorage.getItem("coins");
+    document.querySelector(".cCoins").innerText = coins;
+    idioma = window.navigator.language.slice(0,2);
+    CheckLan(idioma);
+
+}
+
+function Update() {
+    if(parado || pausa) return;
+    if(click){
+        MoverDinosaurio();
+        MoverSuelo();
+        DecidirCrearObstaculos();
+        DecidirCrearNubes();
+        DecidirCrearMoneda();
+        MoverObstaculos();
+        MoverNubes();
+        MoverMonedas();
+        DetectarColision();
+        DetectarConseguirMoneda();
+        if(primera == 1){
+            if (sound) startMusic.play();
+            dino.classList.add("dino-corriendo");
+            lobby.style.visibility = "hidden";
+            dinoAgachado.classList.remove("dino-agachado");
+            primera++;
+            velY = 500;
+            saltando = true;
+        }
+
+
+    }else{
+        dino.classList.remove("dino-corriendo");
+        lobby.style.visibility = "visible";
+    }
+    velY -= gravedad * deltaTime;
+}
+
+function ClickStart(){
+    if (primeraVez){
+        document.querySelector(".avisos").style.visibility = "visible";
+        document.querySelector(".avisos").innerText = "Desliza hacia arriba para saltar";
+        document.querySelector(".avisos").style.bottom = "60%";
+        document.querySelector(".avisos").style.animationPlayState = 'running';
+        document.querySelector(".avisos").style.left = "0";
+    }
+
+    if (pausa){
+        pausa = false;
+        menuPausa.style.visibility = "hidden";
+        negra.style.visibility = "hidden";
+        if(!saltando){
+            if(agachado) document.querySelector(".dino-corriendo-agachado").style.animationPlayState = 'running';
+            else document.querySelector(".dino-corriendo").style.animationPlayState = 'running';
+        }
+        return;
+    }
+    if (gameO) location.reload();
+    primera ++
+    click = true;
+    play.style.visibility = "hidden";
+    settings.style.visibility = "hidden";
+    pause.style.visibility = "visible";
+    negra.style.visibility = "hidden";
+    textoScore.style.visibility = "visible";
+    document.querySelector(".titulo").style.visibility = "hidden";
+    dino.classList.add("dino-corriendo")
+    dinoAgachado.style.visibility = "visible"
+
+}
+
+function Saltar(){
+    if (click){
+        if(dinoPosY === sueloY){
+            if (sound) jumpMusic.play();
+            saltando = true;
+            velY = impulso;
+            if (agachado){
+                dinoAgachado.classList.remove("dino-agachado");
+                dinoAgachado.classList.remove("dino-corriendo-agachado");
+                dino.classList.add("dino")
+                dino.classList.remove("dino-corriendo")
+            }else dino.classList.remove("dino-corriendo");
+            agachado = false;
+        }
+    }
+}
+
+function Agacharce(){
+    if (!click) return
+    if (!saltando){
+        if (agachado){
+            agachado = false;
+            dino.classList.add("dino")
+            dino.classList.add("dino-corriendo")
+            dinoAgachado.classList.remove("dino-agachado")
+        }  
+        else{
+            agachado = true;
+            dino.classList.remove("dino");
+            dinoAgachado.classList.add("dino-agachado")
+            dinoAgachado.classList.add("dino-corriendo-agachado")
+        }
+    }
+}
+
+function MoverDinosaurio() {
+    dinoPosY += velY * deltaTime;
+    if(dinoPosY < sueloY){
+        
+        TocarSuelo();
+    }
+    if (agachado) dinoAgachado.style.bottom = dinoPosY+"px"; else dino.style.bottom = dinoPosY+"px";
+}
+
+function TocarSuelo() {
+    dinoPosY = sueloY;
+    velY = 0;
+    if(saltando){
+        dino.classList.add("dino-corriendo");
+    }
+    saltando = false;
+}
+
+function MoverSuelo() {
+    sueloX += CalcularDesplazamiento();
+    suelo.style.left = -(sueloX % contenedor.clientWidth) + "px";
+}
+
+function CalcularDesplazamiento() {
+    return velEscenario * deltaTime * gameVel;
+}
+
+function Estrellarse() {
+    if (agachado){
+        dinoAgachado.classList.remove("dino-corriendo-agachado");
+        dinoAgachado.style.backgroundPositionX = "-252px";
+        dinoAgachado.style.backgroundPositionY = "-84px";
+    }else{
+        dino.classList.remove("dino-corriendo");
+        dino.style.backgroundPositionX = "-252px";
+    }
+    parado = true;
+}
+
+function DecidirCrearObstaculos() {
+    tiempoHastaObstaculo -= deltaTime;
+    if(tiempoHastaObstaculo <= 0) {
+        CrearObstaculo();
+    }
+}
+
+function DecidirCrearNubes() {
+    tiempoHastaNube -= deltaTime;
+    if(tiempoHastaNube <= 0) {
+        CrearNube();
+    }
+}
+
+function DecidirCrearMoneda() {
+    tiempoHastaMoneda -= deltaTime;
+    if(tiempoHastaMoneda <= 0){
+        CrearMoneda();
+    }
+}
+
+function CrearObstaculo() {
+    var obstaculo = document.createElement("div");
+    contenedor.appendChild(obstaculo);
+    obstaculo.classList.add("coca");
+    //tutorial
+    if (primeraVez){
+        if (obstaculos.length == 1){
+            obstaculo.classList.add("volador");
+        }
+    }else {
+        var r = Math.random();
+        if(score > 66){
+            if(r < 0.36) {
+                obstaculo.classList.add("coca2");
+            } else if(r > 0.75) {
+                obstaculo.classList.add("volador");
+            }
+        }else if(score > 25){
+            if (r < 0.11){
+                obstaculo.classList.add("volador");
+            }else if(r < 0.51){
+                obstaculo.classList.add("coca2");
+            }
+        }else{
+            if(r > 0.65) obstaculo.classList.add("coca2");
+        }
+    }
+    obstaculo.posX = contenedor.clientWidth;
+    obstaculo.style.left = contenedor.clientWidth+"px";
+
+    obstaculos.push(obstaculo);
+    tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * (tiempoObstaculoMax-tiempoObstaculoMin) / gameVel;
+}
+
+function CrearNube() {
+    var nube = document.createElement("div");
+    contenedor.appendChild(nube);
+    nube.classList.add("nube");
+    nube.posX = contenedor.clientWidth;
+    nube.style.left = contenedor.clientWidth+"px";
+    nube.style.bottom = minNubeY + Math.random() * (maxNubeY-minNubeY)+"px";
+    
+    nubes.push(nube);
+    tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax-tiempoNubeMin) / gameVel;
+}
+
+function CrearMoneda(){
+    var moneda = document.createElement("div");
+    contenedor.appendChild(moneda);
+    moneda.classList.add("moneda");
+    moneda.posX = contenedor.clientWidth;
+    moneda.style.left = moneda.posX+"px";
+    for (var i = 0; i < obstaculos.length; i++) {
+        if (IsCollision(moneda, obstaculos[i], 15, 40, 20, 30)){
+            moneda.style.bottom = "200px";
+            break;
+        }else{
+            var m = moneda.getBoundingClientRect();
+            var o = obstaculos[i].getBoundingClientRect();
+            if(moneda.posX > obstaculos[i].posX){
+                if((o.left + o.width - m.left) < 30); moneda.posX += 65;
+            }else{
+                if((m.left + m.width - o.left) < 30) moneda.posX -= 65;
+            }
+        }
+    }
+    moneda.style.left = moneda.posX+"px";
+
+    monedas.push(moneda);
+    tiempoHastaMoneda = tiempoMonedaMin + Math.random() * (tiempoMonedaMax -tiempoMonedaMin) / gameVel;
+}
+
+function MoverObstaculos() {
+    for (var i = obstaculos.length - 1; i >= 0; i--) {
+        if(obstaculos[i].posX < -obstaculos[i].clientWidth) {
+            obstaculos[i].parentNode.removeChild(obstaculos[i]);
+            obstaculos.splice(i, 1);
+            GanarPuntos();
+        }else{
+            obstaculos[i].posX -= CalcularDesplazamiento();
+            obstaculos[i].style.left = obstaculos[i].posX+"px";
+        }
+    }
+}
+
+function MoverNubes() {
+    for (var i = nubes.length - 1; i >= 0; i--) {
+        if(nubes[i].posX < -nubes[i].clientWidth) {
+            nubes[i].parentNode.removeChild(nubes[i]);
+            nubes.splice(i, 1);
+        }else{
+            nubes[i].posX -= CalcularDesplazamiento() * velNube;
+            nubes[i].style.left = nubes[i].posX+"px";
+        }
+    }
+}
+
+function MoverMonedas() {
+    for (var i = monedas.length - 1; i >= 0; i--) {
+        if(monedas[i].posX < -monedas[i].clientWidth) {
+            monedas[i].parentNode.removeChild(monedas[i]);
+            monedas.splice(i, 1);
+        }else{
+            monedas[i].posX -= CalcularDesplazamiento();
+            monedas[i].style.left = monedas[i].posX+"px";
+        }
+    }
+}
+
+function GanarPuntos() {
+    score++;
+    textoScore.innerText = score;
+    if(primeraVez){
+        if (score == 1){
+            document.querySelector(".avisos").innerText = "Desliza hacia abajo para agacharte";
+        } if (score == 2){
+            localStorage.setItem("primeraVez", "false");
+            document.querySelector(".avisos").style.bottom = "30%"
+            document.querySelector(".avisos").style.animationPlayState = 'paused';
+            document.querySelector(".avisos").style.visibility = "hidden";
+        }
+
+    }
+    switch (score) {
+        case 2:
+            primeraVez = false;
+            break;
+
+        case 5:
+            gameVel = 0.8;
+            break;
+    
+        case 14:
+            gameVel = 0.85;
+            break;
+
+        case 20:
+            gameVel = 1;
+            break;
+
+        case 45:
+            gameVel = 1.2;
+            contenedor.classList.add("tarde");
+            break;
+
+        case 64:
+            gameVel = 1.5;
+            //contenedor.style.background = "#383744";
+            // ESTRELLAS
+            break;
+        
+        case 100:
+            gameVel = 1.75;
+            break;
+
+        default:
+            break;
+    }
+    inmortal = false;
+    suelo.style.animationDuration = (3/gameVel)+"s";
+}
+
+
+function GameOver() {
+    Estrellarse();
+    if (primeraVez){
+        document.querySelector(".avisos").style.visibility = "hidden";
+    }
+    pause.style.visibility = "hidden";
+    menuGameO.style.visibility = "visible";
+    document.querySelector(".volverGameO").style.visibility = "visible";
+    negra.style.visibility = "visible";
+    if (revividio){
+        document.querySelector(".revivir").innerText = "";
+        document.querySelector(".pagar").style.opacity = "0";
+        menuGameO.style.height = "25vw";
+        menuGameO.style.top = "45%";
+        document.querySelector(".volverGameO").style.top = "39%"
+    }
+    click = false;
+    gameO = true;
+    if (score > record){
+        var old = record;
+        record = score;
+        localStorage.setItem("record", record);
+        textoP.style.visibility = "visible";
+        textoP.innerText = "Record: " + record;
+        textoScore.style.visibility = "hidden";
+        if(sound) recordMusic.play();
+        chequearDesbloqueado(old);
+    }else{
+        if(sound) deadMusic.play();
+    }
+}
+
+function DetectarColision() {
+    for (var i = 0; i < obstaculos.length; i++) {
+        if(obstaculos[i].posX > dinoPosX + dino.clientWidth) {
+            //EVADE
+            break; //al estar en orden, no puede chocar con más
+        }else{
+            if ((agachado && IsCollision(dinoAgachado, obstaculos[i], 10, 30, 15, 20)) || 
+            (!agachado && IsCollision(dino, obstaculos[i], 10, 30, 15, 20))){
+                if (!inmortal) GameOver();
+            }
+        }
+    }
+}
+
+function DetectarConseguirMoneda(){
+    for (var i = 0; i < monedas.length; i++) {
+        if(monedas[i].posX > dinoPosX + dino.clientWidth) {
+            break;
+        }else{
+            if ((agachado && IsCollision(dinoAgachado, monedas[i], 10, 30, 15, 20)) || 
+            (!agachado && IsCollision(dino, monedas[i], 10, 30, 15, 20))){
+                ++coins;
+                startMusic.play();
+                monedas[i].style.visibility = "hidden";
+                monedas = []
+                document.querySelector(".cCoins").innerText = coins;
+                localStorage.setItem("coins", coins);
+                return;
+            }
+        }
+    }
+}
+
+function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft) {
+    var aRect = a.getBoundingClientRect();
+    var bRect = b.getBoundingClientRect();
+
+    return !(
+        ((aRect.top + aRect.height - paddingBottom) < (bRect.top)) ||
+        (aRect.top + paddingTop > (bRect.top + bRect.height)) ||
+        ((aRect.left + aRect.width - paddingRight) < bRect.left) ||
+        (aRect.left + paddingLeft > (bRect.left + bRect.width))
+    );
+}
+
+!function(t,e){"use strict";"function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){n=n||{bubbles:!1,cancelable:!1,detail:void 0};var a=e.createEvent("CustomEvent");return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},t.CustomEvent.prototype=t.Event.prototype),e.addEventListener("touchstart",function(t){if("true"===t.target.getAttribute("data-swipe-ignore"))return;s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),e.addEventListener("touchmove",function(t){if(!n||!a)return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),e.addEventListener("touchend",function(t){if(s!==t.target)return;var e=parseInt(l(s,"data-swipe-threshold","20"),10),o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,d="",p=t.changedTouches||t.touches||[];Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");if(""!==d){var b={dir:d.replace(/swiped-/,""),touchType:(p[0]||{}).touchType||"direct",xStart:parseInt(n,10),xEnd:parseInt((p[0]||{}).clientX||-1,10),yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);var n=null,a=null,u=null,i=null,r=null,s=null;function l(t,n,a){for(;t&&t!==e.documentElement;){var u=t.getAttribute(n);if(u)return u;t=t.parentNode}return a}}(window,document);
+
+function saltarT(ev){
+    if (!parado && !pausa) Saltar();
+}
+
+function agacharceT(ev){
+    if (!parado && !pausa) Agacharce();
+}
+
+function Sonido(){
+    if (sound){
+        localStorage.setItem("sound", "no");
+        sound = false;
+        document.querySelector(".sonido").style.background = "url(img/icons/mute.png)";
+    }else{
+        localStorage.removeItem("sound");
+        sound = true;
+        document.querySelector(".sonido").style.background = "url(img/icons/sound.png)";
+    }
+    document.querySelector(".sonido").style.backgroundSize = "contain";
+    document.querySelector("sonido").backgroundPosition = "center";
+}
+
+function Pausa(){
+    pausa = true;
+    menuPausa.style.visibility = "visible";
+    negra.style.visibility = "visible";
+    if(!saltando){
+        if(agachado) document.querySelector(".dino-corriendo-agachado").style.animationPlayState = 'paused';
+        else document.querySelector(".dino-corriendo").style.animationPlayState = 'paused';
+    }
+}
+
+function VolverAlMenu(){
+    sessionStorage.removeItem("primera");
+    location.reload();
+}
+
+function Ir(act){
+    contenedor.style.visibility = "hidden";
+    if (act == "skins"){
+        donde = "s";
+        document.querySelector(".contenedorSkins").style.visibility = "visible";
+        document.querySelector(".contenedorSk").style.visibility = "visible";
+        document.querySelector(".skinName").style.visibility = "visible";
+    }else{
+        donde = "t";
+    }
+}
+
+function ChangeSkin(i){
+    document.querySelector(".dino").style.background = skins[i].file + "repeat-x 0px 0px";
+    document.querySelector(".dino").style.backgroundSize = "336px 155px";
+    document.querySelector(".dino").style.backgroundPositionX = "0px";
+
+    document.querySelector(".dino-agachado").style.background = skins[i].file + "repeat-x 0px 0px";
+    document.querySelector(".dino-agachado").style.backgroundSize = "336px 155px";
+    document.querySelector(".dino-agachado").style.backgroundPositionX = "0px";
+}
+
+function SelectSkin(direc){
+    if (direc == "d"){
+        if (index != cantidadSkins) index ++;
+        else index = 0;
+    }else{
+        if (index != 0) index --;
+        else index = cantidadSkins;
+    }
+    document.querySelector(".skinImg").style.background = skins[index].pic;
+    document.querySelector(".skinImg").style.backgroundRepeat = "no-repeat";
+    document.querySelector(".skinImg").backgroundSize=  "contain";
+    document.querySelector(".skinImg").backgroundPosition = "center";
+    document.querySelector(".skinName").innerText = skins[index].name;
+    if(skins[index].gems == "no"){
+        document.querySelector(".comprarS").style.visibility = "hidden";
+        if (record >= skins[index].price){
+            document.querySelector(".skinPrice").innerText = desb;
+            document.querySelector(".skinImg").style.filter = "brightness(1)";
+            localStorage.setItem("index", index);
+            ChangeSkin(index);
+        }else{
+            document.querySelector(".skinPrice").innerText = "Superar los " + 
+                                                                skins[index].price + 
+                                                                " puntos";
+            document.querySelector(".skinImg").style.filter = "brightness(0.4)";
+        }
+    }else{
+        if(localStorage.getItem(skins[index].name) != "owned"){
+            document.querySelector(".skinPrice").innerText = skins[index].price + " monedas";
+            document.querySelector(".skinImg").style.filter = "brightness(0.4)";
+            document.querySelector(".comprarS").style.visibility = "visible";
+        }else{
+            document.querySelector(".skinPrice").innerText = desb;
+            document.querySelector(".skinImg").style.filter = "brightness(1)";
+            document.querySelector(".comprarS").style.visibility = "hidden";
+            localStorage.setItem("index", index);
+            ChangeSkin(index);
+        }
+    }
+    
+}
+
+function chequearDesbloqueado(old){
+    for (let i = 0; i <= cantidadSkins; i++) {
+        if(skins[i].gems == "no"){
+            if(record >= skins[i].price && skins[i].price > old){
+                document.querySelector(".avisos").style.visibility = "visible";
+                document.querySelector(".avisos").innerText = "Skin " + 
+                                                                    skins[i].name +
+                                                                    " desbloqueada!!";
+                document.querySelector(".avisos").style.animationPlayState = 'running';
+                document.querySelector(".avisos").style.left = "0";
+            }
+        }
+    }
+}
+
+function Ajustes(c){
+    if (c  == 0) document.querySelector(".titulo").style.visibility = "hidden";
+    else document.querySelector(".titulo").style.visibility = "visible";
+}
+
+function Pagar(val, func){
+    if (val <= coins){
+        coins -= val;
+        document.querySelector(".cCoins").innerText = coins;
+    } else{
+        if (donde == "l"){
+        menuGameO.style.visibility = "hidden";
+        document.querySelector(".volverGameO").style.visibility = "hidden";
+        } else if(donde == "s"){
+            document.querySelector(".negraSkins").style.zIndex = "15";
+            document.querySelector(".contenedorSk").style.visibility = "hidden";
+            document.querySelector(".skinName").style.visibility = "hidden";
+        }
+        document.querySelector(".fondosIns").style.visibility = "visible";
+        document.querySelector(".volverT").style.visibility = "visible";
+        return; //cartel fondos ins
+    }
+
+    localStorage.setItem("coins", coins);
+    if (String(func) == 'rev'){
+        revividio = true;
+        Revivir();
+    }else if(func == "sk"){
+        localStorage.setItem(skins[index].name, "owned");
+        document.querySelector(".skinPrice").innerText = "Desbloqueado";
+        document.querySelector(".skinImg").style.filter = "brightness(1)";
+        document.querySelector(".comprarS").style.visibility = "hidden";
+        localStorage.setItem("index", index);
+        ChangeSkin(index);
+    }
+}
+
+function Revivir(){
+    revividio = true;
+    parado = false;
+    gameO = false;
+    click = true;
+    inmortal = true;
+    Update();
+    menuGameO.style.visibility = "hidden";
+    document.querySelector(".volverGameO").style.visibility = "hidden";
+    negra.style.visibility = "hidden";
+    textoScore.style.visibility = "visible";
+    textoP.style.visibility = "hidden";
+    pause.style.visibility = "visible";
+    
+    if(saltando) dino.classList.remove("dino-estrellado");
+    else if (agachado){
+        dinoAgachado.style.backgroundPositionX = "0px";
+        dinoAgachado.classList.add("dino-corriendo-agachado")
+    }else{
+        dino.style.backgroundPositionX = "-0px";
+        dino.classList.add("dino-corriendo");
+    }
+}
+
+function SalirFIns(){
+    if (donde == "l"){
+        menuGameO.style.visibility = "visible";
+        document.querySelector(".volverGameO").style.visibility = "visible";
+
+    }else if(donde == "s"){
+        document.querySelector(".negraSkins").style.zIndex = "9";
+        document.querySelector(".contenedorSk").style.visibility = "visible";
+        document.querySelector(".skinName").style.visibility = "visible";
+    }
+    
+
+document.querySelector(".fondosIns").style.visibility = "hidden";
+document.querySelector(".volverT").style.visibility = "hidden";
+}
+
+function CheckLan(idioma){
+    
+    switch (idioma) {
+        case "es":
+            document.querySelector(".tituloSkins").innerText = "Atuendos";
+            document.querySelector(".skinName").innerText = skins[index].name;
+            document.querySelector(".skinPrice").innerText = "Desbloqueado";
+            document.querySelector(".comprarS").innerText = "Comprar";
+            document.querySelector(".textoFIns").innerHTML = "<h2>Fondos insuficientes</h2>\n" +
+                                            "<h5><br>No tienes suficientes monedas,<br>intenta otra vez cuando las tengas</h5>";
+            document.querySelector(".irTienda").innerText = "Quitar";
+            document.querySelector(".textoBotonesAjustes").innerHTML = "<h1>Ajustes</h1>";
+            document.querySelector(".record").innerText = "Record: ";
+            textoRecord.innerText += record;
+            document.querySelector(".revivir").innerText =  "¿Revivir?";
+            document.querySelector(".volverAJugar").innerText = "Reiniciar";
+            document.querySelector(".textoEnPausa").innerHTML = "<strong>En pausa</strong>";
+            document.querySelector(".continuar").innerText = "Continuar";
+            document.querySelector(".volver").innerText = "Volver al menu";
+            document.querySelector(".txtRateUs").innerText = "Sobre nosotros"
+            desb = "Desbloqueado";
+            skins[2].name = "Playa";
+            skins[3].name = "Gala";
+            skins[4].name = "Cuarentena";
+            skins[7].name = "Enfermero";
+            break;
+
+        default: //english
+            document.querySelector(".tituloSkins").innerText = "Skins";
+            document.querySelector(".skinName").innerText = skins[index].name;
+            document.querySelector(".skinPrice").innerText = "Unlocked";
+            document.querySelector(".comprarS").innerText = "Buy";
+            document.querySelector(".textoFIns").innerHTML = "<h2>insufficient funds</h2>\n" +
+                                            "<h5><br>You don't have enough coins,<br> Try again when you have more</h5>";
+            document.querySelector(".irTienda").innerText = "Quit";
+            document.querySelector(".textoBotonesAjustes").innerHTML = "<h1>Settings</h1>";
+            document.querySelector(".record").innerText = "Record:";
+            textoRecord.innerText += " " + record;
+            document.querySelector(".revivir").innerText =  "Revive?";
+            document.querySelector(".volverAJugar").innerText = "Reset";
+            document.querySelector(".textoEnPausa").innerHTML = "<strong>In pause</strong>";
+            document.querySelector(".continuar").innerText = "Continue";
+            document.querySelector(".volver").innerText = "Go to the menu";
+            document.querySelector(".txtRateUs").innerText = "About Us"
+            desb = "Owned";
+            skins[2].name = "Beach";
+            skins[3].name = "Formal";
+            skins[4].name = "Quarantine"; 
+            skins[7].name = "Nurse";
+            break;
+    }
+}
+
+function Rewarded(c){
+    try {
+        Reward();
+        if (c == 1) Revivir()
+        else coins += 15;
+    } catch (error) {
+        console.log(1);
+    }
+}
+
+function Rate(){
+    window.location.replace("https://betaruruguay.com");
+}
+
+</script>
+</body>
+</html>
