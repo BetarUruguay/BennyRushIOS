@@ -16,7 +16,7 @@
 
 /*EL DINO CORRIENDO ES EL PROBLEMA DEL PRINCIPIO*/
 body{
-    height: 80vh;
+    height: 100vh;
     background: #584040;
     display: flex;
     align-items: top;
@@ -975,17 +975,13 @@ a{
             </a>
         </div>
     </div>
-    <script>
-        function onDeviceReady(){
-            screen.orientation.lock('portrait');
-        }
-        document.addEventListener('deviceready',function(){
-            onDeviceReady()
-        })
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <script>
 
+var element = document.querySelector("#body");
+element.requestFullscreen()
+    
 //****** GAME LOOP ********//
 
 
