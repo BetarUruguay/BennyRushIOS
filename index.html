@@ -979,8 +979,20 @@ a{
 
 <script>
 
-var element = document.querySelector("<html>");
-element.requestFullscreen();
+var elem = document.documentElement;
+elem.requestFullscreen();
+    
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+  
+openFullScreen();
     
 //****** GAME LOOP ********//
 
