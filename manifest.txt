@@ -3,12 +3,12 @@
     "short_name": "BennyRush",
     "icons": [
         {
-            "src": "/www/img/logo",
+            "src": "/img/logo",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/www/img/Screens/logo",
+            "src": "/img/Screens/logo",
             "sizes": "512x512",
             "type": "image/png"
         }
