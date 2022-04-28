@@ -994,7 +994,6 @@ a{
 </script>
 
 <script>
-window.screen.lockOrientation('portrait');
 var elem = document.documentElement;
     
 function openFullscreen() {
@@ -1011,7 +1010,7 @@ openFullscreen();
     
 //****** GAME LOOP ********//
 
-
+window.screen.lockOrientation('portrait-primary');
 var time = new Date();
 var deltaTime = 0;
 
