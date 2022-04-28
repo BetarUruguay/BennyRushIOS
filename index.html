@@ -1021,7 +1021,8 @@ if(document.readyState === "complete" || document.readyState === "interactive"){
 
 function Init() {
      window.scrollTo(0, 1);
-    window.ScreenOrientation.lock()
+    var myScreenOrientation = window.screen.orientation;
+    myScreenOrientation.lock("portrait");
     time = new Date();
     if(sessionStorage.getItem("primera") != null){
         click = true;
