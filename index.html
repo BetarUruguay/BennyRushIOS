@@ -1010,7 +1010,6 @@ openFullscreen();
     
 //****** GAME LOOP ********//
 
-//window.screen.lockOrientation('portrait-primary');
 var time = new Date();
 var deltaTime = 0;
 
@@ -1022,7 +1021,7 @@ if(document.readyState === "complete" || document.readyState === "interactive"){
 
 function Init() {
      window.scrollTo(0, 1);
-    screen.orientation.lock(); 
+    screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
     time = new Date();
     if(sessionStorage.getItem("primera") != null){
         click = true;
