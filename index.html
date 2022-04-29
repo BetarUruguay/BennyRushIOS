@@ -1007,19 +1007,19 @@ a{
 </script>
 
 <script>
-var elem = document.documentElement;
+/*var elem = document.documentElement;
     
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
+  } else if (elem.webkitRequestFullscreen) {
     elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
+  } else if (elem.msRequestFullscreen) { 
     elem.msRequestFullscreen();
   }
 }
   
-openFullscreen();
+openFullscreen();*/
     
 //****** GAME LOOP ********//
 
@@ -1034,7 +1034,7 @@ if(document.readyState === "complete" || document.readyState === "interactive"){
 
 function Init() {
      window.scrollTo(0, 1);
-    screen.orientation.lock()
+    //screen.orientation.lock()
     time = new Date();
     if(sessionStorage.getItem("primera") != null){
         click = true;
