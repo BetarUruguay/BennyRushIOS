@@ -440,7 +440,7 @@ body{
 
     color: #ffd900;
     font-size: 4vh;
-    font-familly: Helvetica;
+    font-family: Helvetica;
 }
 
 a{
@@ -614,7 +614,7 @@ a{
 
     background: url(img/icons/sound.png);
     background-size: contain;
-    background-position: center
+    background-position: center;
     background-repeat: no-repeat;
 }
 
@@ -1018,19 +1018,19 @@ a{
     });
 
 function rotate(el, degs) {
-  iedegs = degs/90;
-  if (iedegs < 0) iedegs += 4;
-  transform = 'rotate('+degs+'deg)';
-  iefilter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation='+iedegs+')';
-  styles = {
+    iedegs = degs/90;
+    if (iedegs < 0) iedegs += 4;
+    transform = 'rotate('+degs+'deg)';
+    iefilter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation='+iedegs+')';
+    styles = {
     transform: transform,
     '-webkit-transform': transform,
     '-moz-transform': transform,
     '-o-transform': transform,
     filter: iefilter,
     '-ms-filter': iefilter
-  };
-  $(el).css(styles);
+    };
+    $(el).css(styles);
 }
 </script>
 
@@ -1206,6 +1206,20 @@ var skins = [
         "price": 90,
         "file": "url(img/nurse.png)",
         "pic": "url(img/skins/nurse.png)"
+    },
+    {
+        "name": "Iom Haatzmaut",
+        "gems": "no",
+        "price": 0,
+        "file": "url(img/Israe.png)",
+        "pic": "url(img/skins/Israe.png)"
+    },
+    {
+        "name": "Hertzel",
+        "gems": "yes",
+        "price": 120,
+        "file": "url(img/herzl.png)",
+        "pic": "url(img/skins/herzl.png)"
     }
 ]
 
