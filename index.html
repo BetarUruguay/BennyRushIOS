@@ -1001,10 +1001,6 @@ a{
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
-
-    $(window).bind('orientationchange', function(event) {
-        alert('new orientation:' + event.orientation);
-    });
       alert(1)
 </script>
 
@@ -1014,6 +1010,10 @@ a{
 
 var time = new Date();
 var deltaTime = 0;
+    
+$(window).bind('orientationchange', function(event) {
+    alert('new orientation:' + event.orientation);
+});
 
 if(document.readyState === "complete" || document.readyState === "interactive"){
     setTimeout(Init, 1);
