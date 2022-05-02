@@ -1001,53 +1001,16 @@ a{
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script>
-   document.documentElement.requestFullscreen().catch((e) => {
-      console.log(e);
-   });
-      
-   $(window).bind('orientationchange resize', function(event){
-      if (event.orientation) {
-        if (event.orientation == 'landscape') {
-          if (window.rotation == 90) {
-            rotate(this, -90);
-          } else {
-            rotate(this, 90);
-          }
-        }
-      }
+    document.documentElement.requestFullscreen().catch((e) => {
+        console.log(e);
     });
 
-function rotate(el, degs) {
-    iedegs = degs/90;
-    if (iedegs < 0) iedegs += 4;
-    transform = 'rotate('+degs+'deg)';
-    iefilter = 'progid:DXImageTransform.Microsoft.BasicImage(rotation='+iedegs+')';
-    styles = {
-    transform: transform,
-    '-webkit-transform': transform,
-    '-moz-transform': transform,
-    '-o-transform': transform,
-    filter: iefilter,
-    '-ms-filter': iefilter
-    };
-    $(el).css(styles);
-}
+    $(window).bind('orientationchange', function(event) {
+        alert('new orientation:' + event.orientation);
+    });
 </script>
 
 <script>
-/*var elem = document.documentElement;
-    
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { 
-    elem.msRequestFullscreen();
-  }
-}
-  
-openFullscreen();*/
     
 //****** GAME LOOP ********//
 
@@ -1061,7 +1024,7 @@ if(document.readyState === "complete" || document.readyState === "interactive"){
 }
 
 function Init() {
-     window.scrollTo(0, 1);
+    window.scrollTo(0, 1);
     //screen.orientation.lock()
     time = new Date();
     if(sessionStorage.getItem("primera") != null){
@@ -1217,7 +1180,7 @@ var skins = [
     {
         "name": "Hertzel",
         "gems": "yes",
-        "price": 0,
+        "price": 120,
         "file": "url(img/herzl.png)",
         "pic": "url(img/skins/herzl.png)"
     }
