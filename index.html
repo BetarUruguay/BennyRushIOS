@@ -1000,24 +1000,6 @@ a{
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script>
-    funcionar detectOrientation () {
-        alert(1)
-        if ( orientation == 0 ) {
-        alert ('Portrait');
-
-        }else if ( orientation == 90 ) {
-        alert ('Landscape, clockwise');
-        
-        }else if ( orientation == -90 ) {
-        alert ('Landscape, counterclockwise');
-        
-        }else if ( orientation == 180 ) {
-        alert ('Portrait, upside down');
-        }
-    }
-</script>
-
 <script>
     
 //****** GAME LOOP ********//
@@ -1039,6 +1021,7 @@ function Init() {
         click = true;
         primera = 2;
     }
+    lock("portrait");
     Start();
     Loop();
 }
@@ -1950,6 +1933,16 @@ function Rate(){
     window.location.replace("https://betaruruguay.com");
 }
 
+function lock(orientation){
+    let de = document.documentElement;
+    if (de.requestFullscreen) de.requestFullscreen();
+    else if (de.mozRequestFullScreen) de.mozRequestFullScreen();
+    else if (de.webkitRequestFullscreen) de.webkitRequestFullscreen();
+    else if (de.msRequestFullscreen) de.msRequestFullscreen();
+
+    screen.orientation.lock(orientation);   
+}
+  
 </script>
 </body>
 </html>
