@@ -919,6 +919,27 @@ a{
     src: url("retro_computer_personal_use.ttf") format('truetype');
 }
     </style>
+    <script>
+        var mql = window.matchMedia("(orientation: portrait)");
+
+        // If there are matches, we're in portrait
+        if(mql.matches) {  
+            // Portrait orientation
+        } else {  
+            document.body.style.setProperty("-webkit-transform", "rotate(-90deg)", null);
+        }
+
+        // Add a media query change listener
+        mql.addListener(function(m) {
+            if(m.matches) {
+                document.body.style.setProperty("-webkit-transform", "rotate(0deg)", null);
+            }
+            else {
+                document.body.style.setProperty("-webkit-transform", "rotate(-90deg)", null);
+
+            }
+        });
+    </script>
 </head>
 
 <body Onorientationchange cuerpo = "alert(1)">
