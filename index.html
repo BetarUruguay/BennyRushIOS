@@ -935,7 +935,9 @@ a{
         mql.addListener(function(m) {
             if(m.matches) {
                 document.body.style.setProperty("-webkit-transform", "rotate(0deg)", null);
-                document.body.style.setProperty(" transform-origin", "top left", null);
+                document.body.style.setProperty("transform-origin", "top left", null);
+                //document.body.style.setProperty(" transform", "translateY(100vh)", null);
+
             }
             else {
                 document.body.style.setProperty("-webkit-transform", "rotate(90deg)", null);
