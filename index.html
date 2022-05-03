@@ -927,16 +927,19 @@ a{
             // Portrait orientation
         } else {  
             document.body.style.setProperty("-webkit-transform", "rotate(90deg)", null);
+            document.body.style.setProperty(" transform-origin", "top left", null);
+
         }
 
         // Add a media query change listener
         mql.addListener(function(m) {
             if(m.matches) {
                 document.body.style.setProperty("-webkit-transform", "rotate(0deg)", null);
+                document.body.style.setProperty(" transform-origin", "top left", null);
             }
             else {
                 document.body.style.setProperty("-webkit-transform", "rotate(90deg)", null);
-
+                document.body.style.setProperty(" transform-origin", "top left", null);
             }
         });
     </script>
