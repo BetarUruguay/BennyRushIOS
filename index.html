@@ -920,8 +920,8 @@ a{
 }
     </style>
     <script>
+        alert(1)
         var mql = window.matchMedia("(orientation: portrait)");
-        alert(10)
         // If there are matches, we're in portrait
         if(mql.matches) {  
             // Portrait orientation
@@ -937,7 +937,6 @@ a{
         // Add a media query change listener
         mql.addListener(function(m) {
             if(m.matches) {
-                alert(2)
                 document.querySelector(".play").style.width = "34vw";
                 document.querySelector(".play").style.height = "17vh";
                 document.querySelector(".skins").style.width = "12vw";
@@ -947,7 +946,6 @@ a{
 
             }
             else {
-               alert(1)
                document.querySelector(".play").style.width = "7.5vw"
                document.querySelector(".skins").style.width = "6vw"
                document.querySelector(".settings").style.width = "5vw"
