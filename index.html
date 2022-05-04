@@ -920,7 +920,6 @@ a{
 }
     </style>
     <script>
-        alert(1)
         var mql = window.matchMedia("(orientation: portrait)");
         // If there are matches, we're in portrait
         if(mql.matches) {  
@@ -938,17 +937,24 @@ a{
         mql.addListener(function(m) {
             if(m.matches) {
                 document.querySelector(".play").style.width = "34vw";
-                document.querySelector(".play").style.height = "17vh";
+                document.querySelector(".play").style.left = "33%"
                 document.querySelector(".skins").style.width = "12vw";
-                document.querySelector(".skins").style.height = "6vh";
-                document.querySelector(".settings").style.height = "5vh";
                 document.querySelector(".settings").style.width = "10vw";
+                document.querySelector(".titulo").style.fontSize = "4.75vh"
+                document.querySelector(".titulo").style.fontSize = "2.5vh"
+                document.querySelector(".cCoins").style.fontSize = "2.5vh"
+
 
             }
             else {
                document.querySelector(".play").style.width = "7.5vw"
+               document.querySelector(".play").style.left = "43.75vw"
                document.querySelector(".skins").style.width = "6vw"
-               document.querySelector(".settings").style.width = "5vw";
+               document.querySelector(".settings").style.width = "4vw";
+               document.querySelector(".titulo").style.fontSize = "5vh"
+               document.querySelector(".titulo").style.fontSize = "3vh"
+               document.querySelector(".titulo").style.fontSize = "3vh"
+
     
             }
         });
