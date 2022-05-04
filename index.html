@@ -937,6 +937,7 @@ a{
         // Add a media query change listener
         mql.addListener(function(m) {
             if(m.matches) {
+                alert(2)
                 document.querySelector(".play").style.width = "34vw";
                 document.querySelector(".play").style.height = "17vh";
                 document.querySelector(".skins").style.width = "12vw";
@@ -946,11 +947,10 @@ a{
 
             }
             else {
-                alert(1)
+               alert(1)
                document.querySelector(".play").style.width = "7.5vw"
                document.querySelector(".skins").style.width = "6vw"
                document.querySelector(".settings").style.width = "5vw"
-
 
 
 
