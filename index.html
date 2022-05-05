@@ -925,18 +925,13 @@ a{
         if(mql.matches) {  
             // Portrait orientation
         } else {  
-            document.body.style.setProperty("-webkit-transform", "rotate(90deg)", null);
-            document.body.style.setProperty("transform-origin", "top left", null);
-            document.body.style.setProperty("top", "0", null);
-            document.body.style.setProperty("bottom", "0", null);
-
-
+            Arregrlar(false);
         }
 
         // Add a media query change listener
         mql.addListener(function(m) {
             if(m.matches) {
-                Arreglar(true)
+                Arreglar(true);
             }
             else {
                 Arreglar(false);
