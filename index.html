@@ -920,59 +920,13 @@ a{
 }
     </style>
     <script>
+        var foo = 1;
         var mql = window.matchMedia("(orientation: portrait)");
         // If there are matches, we're in portrait
         if(mql.matches) {  
             // Portrait orientation
         } else {  
-            x = false;
-           if (x) document.querySelector(".play").style.width = "34vw"; else document.querySelector(".play").style.width = "12vw";
-           if (x) document.querySelector(".play").style.height = "17vh"; else document.querySelector(".play").style.height = "24vh";
-           if (x) document.querySelector(".play").style.left = "33%"; else document.querySelector(".play").style.left = "44%";
-           if (x) document.querySelector(".lobby").style.top = "40vh"; else document.querySelector(".lobby").style.top = "28vh";
-           if (x) document.querySelector(".skins").style.left = "44vw"; else document.querySelector(".skins").style.left = "47%";
-           if (x) document.querySelector(".skins").style.width = "12vw"; else document.querySelector(".skins").style.width = "6vw";
-           if (x) document.querySelector(".skins").style.height = "6vh"; else document.querySelector(".skins").style.height = "10vh";
-           if (x) document.querySelector(".skins").style.top = "20vh"; else document.querySelector(".skins").style.top = "30vh";
-           if (x) document.querySelector(".settings").style.width = "10vw"; else document.querySelector(".settings").style.width = "5vw";
-           if (x) document.querySelector(".settings").style.height = "5vh"; else document.querySelector(".settings").style.height = "8vh";
-           if (x) document.querySelector(".imgSettings").style.height = "5vh"; else document.querySelector(".imgSettings").style.width = "5vw";
-           if (x) document.querySelector(".imgSettings").style.width = "10vw"; else document.querySelector(".imgSettings").style.height = "8vh";
-           if (x) document.querySelector(".titulo").style.fontSize = "4.75vh"; else document.querySelector(".titulo").style.fontSize = "7vh";
-           if (x) document.querySelector(".record").style.fontSize = "2.5vh"; else document.querySelector(".record").style.fontSize = "4vh";
-           if (x) document.querySelector(".cCoins").style.fontSize = "2.5vh"; else document.querySelector(".cCoins").style.fontSize = "4vh";
-           if (x) document.querySelector(".score").style.fontSize = "6.965vh"; else document.querySelector(".score").style.fontSize = "14vh";
-
-           if (x) document.querySelector(".pausa").style.width = "10vw"; else document.querySelector(".pausa").style.width = "5vw";
-           if (x) document.querySelector(".pausa").style.height = "5vh"; else document.querySelector(".pausa").style.height = "8vh";
-           if (x) document.querySelector(".menuPausa").style.width = "60vw"; else document.querySelector(".menuPausa").style.width = "30vw";
-           if (x) document.querySelector(".menuPausa").style.height = "18vh"; else document.querySelector(".menuPausa").style.height = "25vh";
-           if (x) document.querySelector(".menuPausa").style.right = "20vw"; else document.querySelector(".menuPausa").style.right = "35.5vw";
-           if (x) document.querySelector(".menuPausa").style.fontSize = "3.8vh"; else document.querySelector(".menuPausa").style.fontSize = "4.8vh";
-           if (x) document.querySelector(".continuar").style.width = "50vw"; else document.querySelector(".continuar").style.width = "20vw";
-           if (x) document.querySelector(".continuar").style.top = "2vw"; else document.querySelector(".continuar").style.top = "1.5vw";
-           if (x) document.querySelector(".volver").style.width = "50vw"; else document.querySelector(".volver").style.width = "20vw";
-           if (x) document.querySelector(".volver").style.top = "5vw"; else document.querySelector(".volver").style.top = "3vw";
-
-           if (x) document.querySelector(".ventana").style.width = "60vw"; else document.querySelector(".ventana").style.width = "40vw";
-           if (x) document.querySelector(".ventana").style.height = "60vh"; else document.querySelector(".ventana").style.height = "65vh";
-           if (x) document.querySelector(".modal").style.top = "15vh"; else document.querySelector(".modal").style.top = "-30vh";
-           if (x) document.querySelector(".sonido").style.width = "15vw"; else document.querySelector(".sonido").style.width = "6vw";
-           if (x) document.querySelector(".sonido").style.height = "7.5vh"; else document.querySelector(".sonido").style.height = "13vh";
-           if (x) document.querySelector(".sonido").style.right = "25.5vw"; else document.querySelector(".sonido").style.right = "19vw";
-           if (x) document.querySelector(".rateUs").style.width = "15vw"; else document.querySelector(".rateUs").style.width = "6vw";
-           if (x) document.querySelector(".rateUs").style.height = "7.5vh"; else document.querySelector(".rateUs").style.height = "13vh";
-           if (x) document.querySelector(".rateUs").style.right = "25.5vw"; else document.querySelector(".rateUs").style.right = "19vw";
-           if (x) document.querySelector(".rateUs").style.fontSize = "6.5vh"; else document.querySelector(".rateUs").style.fontSize = "12vh";
-           if (x) document.querySelector(".rateUs").style.top = "23vh"; else document.querySelector(".rateUs").style.top = "30vh";
-           if (x) document.querySelector(".txtRateUs").style.width = "50vw"; else document.querySelector(".txtRateUs").style.width = "30vw";
-           if (x) document.querySelector(".txtRateUs").style.fontSize = "2vh"; else document.querySelector(".txtRateUs").style.fontSize = "3.5vh";
-           if (x) document.querySelector(".txtRateUs").style.left = "10vw"; else document.querySelector(".txtRateUs").style.left = "7vw";
-           if (x) document.querySelector(".cruz").style.fontSize = "4vh"; else document.querySelector(".cruz").style.fontSize = "8vh";
-
-           if (x) document.querySelector(".menuGameO").style.width = "70vw"; else document.querySelector(".menuGameO").style.width = "35vw";
-           if (x) document.querySelector(".menuGameO").style.height = "25vh"; else document.querySelector(".menuGameO").style.height = "30vh";
-           if (x) document.querySelector(".menuGameO").style.right = "15vw"; else document.querySelector(".menuGameO").style.right = "25vw";
+           foo = 0
         }
 
         // Add a media query change listener
@@ -1093,6 +1047,7 @@ function Init() {
     if(sessionStorage.getItem("primera") != null){
         click = true;
         primera = 2;
+        if (foo = 0) Arreglar(false);
     }
    // lock("portrait");
     Start();
@@ -2053,7 +2008,7 @@ function Arreglar(x){
     
        if (x) document.querySelector(".menuGameO").style.width = "70vw"; else document.querySelector(".menuGameO").style.width = "35vw";
        if (x) document.querySelector(".menuGameO").style.height = "25vh"; else document.querySelector(".menuGameO").style.height = "30vh";
-       if (x) document.querySelector(".menuGameO").style.right = "15vw"; else document.querySelector(".menuGameO").style.right = "25vw";        
+       if (x) document.querySelector(".menuGameO").style.right = "15vw"; else document.querySelector(".menuGameO").style.right = "35vw";        
 
 
 
