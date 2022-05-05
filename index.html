@@ -936,36 +936,10 @@ a{
         // Add a media query change listener
         mql.addListener(function(m) {
             if(m.matches) {
-                document.querySelector(".play").style.width = "34vw";
-                document.querySelector(".play").style.left = "33%";
-                document.querySelector(".skins").style.left = "44vw";
-                document.querySelector(".skins").style.width = "12vw";
-                document.querySelector(".skins").style.top = "20vh";
-                document.querySelector(".settings").style.width = "10vw";
-                document.querySelector(".settings").style.height = "5vh";
-                document.querySelector(".imgSettings").style.height = "5vh";
-                document.querySelector(".imgSettings").style.width = "10vw";
-                document.querySelector(".titulo").style.fontSize = "4.75vh";
-                document.querySelector(".record").style.fontSize = "2.5vh";
-                document.querySelector(".cCoins").style.fontSize = "2.5vh";
-
-
+                Arreglar(true)
             }
             else {
-               document.querySelector(".play").style.width = "7.5vw";
-               document.querySelector(".play").style.left = "48%";
-               document.querySelector(".skins").style.left = "48%";
-               document.querySelector(".skins").style.width = "6vw";
-               document.querySelector(".skins").style.top = "30vh";
-               document.querySelector(".settings").style.width = "5vw";
-               document.querySelector(".settings").style.height = "6vh";
-               document.querySelector(".imgSettings").style.width = "5vw";
-               document.querySelector(".imgSettings").style.height = "6vh";
-               document.querySelector(".titulo").style.fontSize = "7vh";
-               document.querySelector(".record").style.fontSize = "4vh";
-               document.querySelector(".cCoins").style.fontSize = "4vh";
-
-    
+                Arreglar(false);
             }
         });
     </script>
@@ -1989,16 +1963,26 @@ function Rate(){
     window.location.replace("https://betaruruguay.com");
 }
 
-/*function lock (orientation){
-    let de = document.documentElement;
-    if (de.requestFullscreen) de.requestFullscreen();
-    else if (de.mozRequestFullScreen) de.mozRequestFullScreen();
-    else if (de.webkitRequestFullscreen) de.webkitRequestFullscreen();
-    else if (de.msRequestFullscreen) de.msRequestFullscreen();
+function Arreglar(x){
+       if (x) document.querySelector(".play").style.width = "34vw"; else document.querySelector(".play").style.width = "9.5vw";
+       if (x) document.querySelector(".play").style.heigh = "17vh"; else document.querySelector(".play").style.heigh = "9.5vh";
+       if (x) document.querySelector(".play").style.left = "33%"; else document.querySelector(".play").style.left = "48%";
+       if (x) document.querySelector(".lobby").style.top = "40vh"; else document.querySelector(".lobby").style.top = "35vh";
+       if (x) document.querySelector(".skins").style.left = "44vw"; else document.querySelector(".skins").style.left = "48%";
+       if (x) document.querySelector(".skins").style.width = "12vw"; else document.querySelector(".skins").style.width = "6vw";
+       if (x) document.querySelector(".skins").style.top = "20vh"; else document.querySelector(".skins").style.top = "25vh";
+       if (x) document.querySelector(".settings").style.width = "10vw"; else document.querySelector(".settings").style.width = "5vw";
+       if (x) document.querySelector(".settings").style.height = "5vh"; else document.querySelector(".settings").style.height = "8vh";
+       if (x) document.querySelector(".imgSettings").style.height = "5vh"; else document.querySelector(".imgSettings").style.width = "5vw";
+       if (x) document.querySelector(".imgSettings").style.width = "10vw"; else document.querySelector(".imgSettings").style.height = "8vh";
+       if (x) document.querySelector(".titulo").style.fontSize = "4.75vh"; else document.querySelector(".titulo").style.fontSize = "7vh";
+       if (x) document.querySelector(".record").style.fontSize = "2.5vh"; else document.querySelector(".record").style.fontSize = "4vh";
+       if (x) document.querySelector(".cCoins").style.fontSize = "2.5vh"; else document.querySelector(".cCoins").style.fontSize = "4vh";
+    
+                
 
-    screen.orientation.lock(orientation);   
-}*/
-  
+}
+    
 </script>
 </body>
 </html>
