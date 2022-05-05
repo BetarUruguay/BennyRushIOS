@@ -926,12 +926,11 @@ a{
         if(mql.matches) {  
             // Portrait orientation
         } else {  
-           foo = 0
+           foo = 0;
         }
 
         // Add a media query change listener
         mql.addListener(function(m) {
-            alert(1)
             if(m.matches) {
                 Arreglar(true);
             }
@@ -1047,7 +1046,7 @@ function Init() {
     if(sessionStorage.getItem("primera") != null){
         click = true;
         primera = 2;
-        if (foo = 0) Arreglar(false);
+        if (foo == 0) Arreglar(false);
     }
    // lock("portrait");
     Start();
