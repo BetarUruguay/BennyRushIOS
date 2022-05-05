@@ -926,7 +926,6 @@ a{
             // Portrait orientation
         } else {  
             x = false;
-            alert(x)
            if (x) document.querySelector(".play").style.width = "34vw"; else document.querySelector(".play").style.width = "12vw";
            if (x) document.querySelector(".play").style.height = "17vh"; else document.querySelector(".play").style.height = "24vh";
            if (x) document.querySelector(".play").style.left = "33%"; else document.querySelector(".play").style.left = "44%";
@@ -978,6 +977,7 @@ a{
 
         // Add a media query change listener
         mql.addListener(function(m) {
+            alert(1)
             if(m.matches) {
                 Arreglar(true);
             }
