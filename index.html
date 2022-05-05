@@ -1046,7 +1046,6 @@ function Init() {
     if(sessionStorage.getItem("primera") != null){
         click = true;
         primera = 2;
-        if (foo == 0) Arreglar(false);
     }
    // lock("portrait");
     Start();
@@ -1205,6 +1204,7 @@ var skins = [
 ]
 
 function Start() {
+    if (foo == 0) Arreglar(false);
     negra = document.querySelector(".negra")
     gameOver = document.querySelector(".game-over");
     lobby = document.querySelector(".lobby");
