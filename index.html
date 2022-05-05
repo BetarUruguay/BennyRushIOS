@@ -1032,6 +1032,7 @@ a{
 
 var time = new Date();
 var deltaTime = 0;
+if (foo == 0) Arreglar(false);
 
 if(document.readyState === "complete" || document.readyState === "interactive"){
     setTimeout(Init, 1);
@@ -1204,7 +1205,6 @@ var skins = [
 ]
 
 function Start() {
-    if (foo == 0) Arreglar(false);
     negra = document.querySelector(".negra")
     gameOver = document.querySelector(".game-over");
     lobby = document.querySelector(".lobby");
